@@ -13,14 +13,16 @@ fetch (artist)
 
 localStorage.setItem(artist, album)
 // this should go within the search event listener so that it saves the information on page load
-$(".album").each(function(){
-    var saveAlbum=$(this)
+
+// saves the information in the given class/id to be shown from local storage
+$(".saved-albums").each(function(){
     // looks for current album and saves it 
     var albumName=localStorage.getItem(saveAlbum);
     // gets the album saved to local storage
+    var saveAlbum=albumName.text(empty)
 
     if (albumName){
-        $(this).find("enterhtml").val(albumName)
+        $(this).find(saveAlbum).val(albumName)
         // finds the album name and saves it to the html class/id
     }
 })
