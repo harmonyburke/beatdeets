@@ -67,13 +67,37 @@ function performSearch(artistInput) {
     const wikiBioElement = document.getElementById("wikibio");
   
     // Clear previous search results
-    // wikiBioElement.innerHTML = "";
+    wikiBioElement.innerHTML = "";
   
-    // // Extract and display the artist biography
-    // const searchTerm = data[0];
-    // const searchBiography = data[2][0]; // The artist biography is in the first entry of the data[2] array
+    // Extract and display the artist biography
+    const searchTerm = data[0];
+    const searchBiography = data[2][0]; // The artist biography is in the first entry of the data[2] array
   
-    // // Set the content of the "wikibio" element
-    // wikiBioElement.innerHTML = `<strong>${searchTerm}</strong>: ${searchBiography}`;
+    // Set the content of the "wikibio" element
+    wikiBioElement.innerHTML = `<strong>${searchTerm}</strong>: ${searchBiography}`;
   }
 });
+$("#saved-albums").each(function(){
+  // looks for current album and saves it 
+  var albumName=localStorage.getItem(saveAlbum);
+  // gets the album saved to local storage
+  var saveAlbum=albumName.val()
+  // this pulls the value from the entered information
+
+  if (albumName){
+      $(this).find(saveAlbum).val(albumName)
+      // finds the album name and saves it to the html class/id
+  }
+
+})
+$("#artist-info").each(function(){
+  var artistWiki=$("#artist-info").val()
+  // this pulls the value entered into the input field 
+  var saveWiki=localStorage.getItem(artistWiki)
+  // this gets the information from the wiki that has been set to local storage
+  if(saveWiki){
+      $(this).find(saveWiki).val(artistWiki)
+      // find the info and sets it
+  }
+
+})
