@@ -32,8 +32,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function performSearch(artistInput) {
     const searchQuery = `${artistInput} + _(musician)`;
-    // const apiUrl = `https://en.wikipedia.org/w/api.php?action=opensearch&search=${searchQuery}&format=json&origin=*`;
-    // const section = "2"; // Specify the section you want
     const apiUrl = `https://en.wikipedia.org/w/api.php?action=parse&page=${searchQuery}&format=json&origin=*`;
 
     fetch(apiUrl)
@@ -44,30 +42,26 @@ document.addEventListener("DOMContentLoaded", function () {
         return response.json();
       })
       .then((data) => {
-        displaySearchResults(data);
+        displaySearchResults(data, artistInput);
         console.log(data);
-        console.log(data.parse.sections[1]);
-        document.getElementById("wikibio").innerHTML = data.parse.anchors[0];
       })
       .catch((error) => {
         console.error("Fetch error:", error);
       });
   }
 
-  function displaySearchResults(data) {
+  function displaySearchResults(data, artistInput) {
     const wikiBioElement = document.getElementById("wikibio");
-
-    // Clear previous search results
     wikiBioElement.innerHTML = "";
-
-    // Extract and display the artist biography
-    const searchTerm = data[0];
-    const searchBiography = data[2][0]; // The artist biography is in the first entry of the data[2] array
-
-    // Set the content of the "wikibio" element
-    wikiBioElement.innerHTML = `<strong>${searchTerm}</strong>: ${searchBiography}`;
+    const searchTerm = artistInput;
+    const wikiUrl = `https://en.wikipedia.org/wiki/${searchTerm.replace(
+      / /g,
+      "_"
+    )}`;
+    wikiBioElement.innerHTML = `<strong>${searchTerm}</strong>: <a href="${wikiUrl}" target="_blank">Wikipedia Link</a>`;
   }
 });
+
 $("#saved-albums").each(function () {
   // looks for current album and saves it
   var albumName = localStorage.getItem(saveAlbum);
