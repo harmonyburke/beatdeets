@@ -10,23 +10,23 @@
     <title>The Deetz</title>
 </head>
 <body>
+<section>
+    <div class="topnav">
+        <input type="text" id="artists-input" placeholder="Enter your favorite  Artist!">
+        <button id="search-button" type="button">Give me a beat!</button>
+    </div>
+</section>
 
-    <section class="font-bold mt-2 mb-12 flex flex-col items-center">
-        <div class="topnav">
-            <input type="text" id="artists-input" placeholder="Enter an Artist.." class="p-1 rounded text-center mb-2 border-2 border-black">
-            <button id="search-button" type="button" class="p-1 border-2 text-black border-black rounded">Give me a beat!</button>
-        </div>
-        <div class="previous-search mt-4 flex flex-col items-center">
-            <h2 class="text-black">Previous Searches</h2>
-            <div class="mt-2 flex flex-col items-center">
-                <button class="p-0.5 border-2 text-black border-black rounded mb-1">Search 1</button>
-                <button class="p-0.5 border-2 text-black border-black rounded mb-1">Search 2</button>
-                <button class="p-0.5 border-2 text-black border-black rounded">Search 3</button>
-            </div>
-        </div>   
-    </section>
-    
-    
+<section>
+    <div class="albums">
+        <h1>Check out this album!</h1>
+        <div id="random-album"></div>
+    </div>
+    <div class="wikiresults">
+        <h1 id="wikibio"></h1>
+    </div>
+</section>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
 
 
