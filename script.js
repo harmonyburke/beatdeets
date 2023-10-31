@@ -122,6 +122,9 @@ $("#saved-albums").each(function () {
   if (albumName) {
     $(this).find(saveAlbum).val(albumName)
     // finds the album name and saves it to the html class/id
+  if (albumName) {
+    $(this).find(saveAlbum).val(albumName);
+    // finds the album name and saves it to the html class/id
   }
 
 })
