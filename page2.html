@@ -3,28 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./assets/page2.css" rel="stylesheet">
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="crossorigin="anonymous"></script>
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <title>The Deetz</title>
 </head>
 <body>
-<section>
-    <div class="topnav">
-        <input type="text" id="artists-input" placeholder="your favorite genre">
-        <button id="search-button" type="button">Give me a beat!</button>
-    </div>
-</section>
 
-<section>
-    <div class="albums">
-        <h1>The Deetz</h1>
-    </div>
-    <div class="wikiresults">
-        <h1 id="wikibio"></h1>
-    </div>
-</section>
+    <section class="font-bold mt-2 mb-12 flex flex-col items-center">
+        <div class="topnav">
+            <input type="text" id="artists-input" placeholder="Enter an Artist.." class="p-1 rounded text-center mb-2 border-2 border-black">
+            <button id="search-button" type="button" class="p-1 border-2 text-black border-black rounded">Give me a beat!</button>
+        </div>
+        <div class="previous-search mt-4 flex flex-col items-center">
+            <h2 class="text-black">Previous Searches</h2>
+            <div class="mt-2 flex flex-col items-center">
+                <button class="p-0.5 border-2 text-black border-black rounded mb-1">Search 1</button>
+                <button class="p-0.5 border-2 text-black border-black rounded mb-1">Search 2</button>
+                <button class="p-0.5 border-2 text-black border-black rounded">Search 3</button>
+            </div>
+        </div>   
+    </section>
+    
+    
 
+
+
+
+
+
+<div class="flex justify-center items-center">
+    <section class="border border-black rounded w-3/4">
+        <div class="albums flex flex-col items-center">
+            <h1>Album Placeholder</h1>
+        </div>
+        <div class="wikiresults flex flex-col items-center">
+            <h1 id="wikibio"></h1>
+        </div>
+    </section>
+</div>
     <script src="script.js"></script>
 </body>
 </html>
