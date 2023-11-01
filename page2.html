@@ -11,20 +11,18 @@
 </head>
 <body>
 <section>
-    <div class="topnav">
+    <div class="flex justify-center items-center topnav">
         <input type="text" id="artists-input" placeholder="Enter your favorite  Artist!">
         <button id="search-button" type="button">Give me a beat!</button>
+    </div>
+    <div class="previous flex flex-col items-center">
+        <button type="button" class="text-black" id="previous-button">Previous</button>
+        <button type="button" class="text-black" id="previous-button">Previous</button>
+        <button type="button" class="text-black" id="previous-button">Previous</button>
     </div>
 </section>
 
 <section>
-    <div class="albums">
-        <h1>Check out this album!</h1>
-        <div id="random-album"></div>
-    </div>
-    <div class="wikiresults">
-        <h1 id="wikibio"></h1>
-    </div>
 </section>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
@@ -35,6 +33,10 @@
 
 <div class="flex justify-center items-center">
     <section class="border border-black rounded w-3/4">
+        <div class="flex justify-center items-center albums">
+            <h1>Check out this album!</h1>
+            <div id="random-album"></div>
+        </div>
         <div class="albums flex flex-col items-center">
             <h1>Album Placeholder</h1>
         </div>
