@@ -10,14 +10,14 @@ $(document).ready(function () {
     // event.preventDefault()
     console.log("hello")
     var artistName = artistSearch.val()
-    getAlbum(artistName)
+ 
     
     window.location.href = `page2.html?artist=${encodeURIComponent(artistName)}`;
     // window.location.href=`page2.html`
   })
 
   function getAlbum(artistName) {
-    var artistName = artistSearch.val()
+    // var artistName = artistSearch.val()
     console.log(artistName)
     
     var artistIdApi = `http://theaudiodb.com/api/v1/json/2/discography.php?s=` + artistName.toLowerCase()
@@ -71,6 +71,9 @@ const urlParams = new URLSearchParams(window.location.search);
 const artistInput = urlParams.get("artist");
 if (artistInput) {
   // document.getElementById("artists-input").value = artistInput;
+  console.log(artistInput)
+  getAlbum(artistInput)
+  
   performSearch(artistInput);
 }
 document
@@ -127,6 +130,7 @@ $("#saved-albums").each(function () {
     // finds the album name and saves it to the html class/id
   }
 
+}
 })
 $("#artist-info").each(function () {
   var artistWiki = $("#artist-info").val()
@@ -140,4 +144,3 @@ $("#artist-info").each(function () {
 
 
 })
-
