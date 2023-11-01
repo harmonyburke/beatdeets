@@ -83,8 +83,11 @@ document
 
 
 function performSearch(artistInput) {
-  const searchQuery = `${artistInput} + _(musician)`;
+  const searchQuery = `${artistInput}_(musician)`;
+  console.log(searchQuery);
   const apiUrl = `https://en.wikipedia.org/w/api.php?action=parse&page=${searchQuery}&format=json&origin=*`;
+
+
   fetch(apiUrl)
     .then((response) => {
       if (!response.ok) {
