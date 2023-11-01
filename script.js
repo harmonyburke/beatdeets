@@ -5,6 +5,7 @@ $(document).ready(function () {
    var artistSearch = $("#artists-input")
   var searchBtn = $("#search-button")
   var randomDiv = $("#random-album")
+  var lastAlbumDiv=$("#previous-button")
 
   searchBtn.on("click", function () {
     // event.preventDefault()
@@ -40,6 +41,7 @@ $(document).ready(function () {
           // Get the random album
           var randomAlbum = albums[randomIndex].strAlbum;
   
+          saveAlbum(randomAlbum, artistName)
           console.log('Random Album:', randomAlbum);
           // randomDiv.textContent=randomAlbum
           randomDiv.empty().append(randomAlbum);
@@ -58,6 +60,7 @@ $(document).ready(function () {
   
   
   
+    
   
   }
 
@@ -73,7 +76,7 @@ if (artistInput) {
   // document.getElementById("artists-input").value = artistInput;
   console.log(artistInput)
   getAlbum(artistInput)
-  
+
   performSearch(artistInput);
 }
 document
@@ -114,24 +117,42 @@ function displaySearchResults(data, artistInput) {
   wikiBioElement.innerHTML = `<strong>${searchTerm}</strong>: <a href="${wikiUrl}" target="_blank">Wikipedia Link</a>`;
 }
 
-})
-$("#saved-albums").each(function () {
-  // looks for current album and saves it 
-  var albumName = localStorage.getItem(saveAlbum);
-  // gets the album saved to local storage
-  var saveAlbum = albumName.val()
-  // this pulls the value from the entered information
 
-  if (albumName) {
-    $(this).find(saveAlbum).val(albumName)
-    // finds the album name and saves it to the html class/id
-  if (albumName) {
-    $(this).find(saveAlbum).val(albumName);
-    // finds the album name and saves it to the html class/id
+
+function saveAlbum(randomAlbum, artistName) {
+  var albumHistory = JSON.parse(localStorage.getItem("savedAlbum")) || [];
+  
+  var combinedName = artistName + " - " + randomAlbum;
+  console.log(combinedName)
+
+  if (albumHistory.indexOf(combinedName) === -1) {
+    albumHistory.push(combinedName);
+    localStorage.setItem("savedAlbum", JSON.stringify(albumHistory));
+
+   
+    lastAlbumDiv.innerHTML = "";
+
+    for (var i = 0; i < albumHistory.length; i++) {
+      var artistAlbum=[albumHistory[i]]
+      console.log(artistAlbum)
+      // var prevLink=artistAlbum.split(" - ") 
+      // console.log(prevLink)
+
+      var prevAlbum = document.createElement("button");
+      prevAlbum.textContent = artistAlbum;
+      prevAlbum.setAttribute("id", artistAlbum);
+      lastAlbumDiv.append(artistAlbum);
+
+      prevAlbum.addEventListener("click", function(event){
+        var albumClick=event.target.id 
+        getAlbum(albumClick)
+      })
+    }
   }
-
 }
-})
+
+
+
 $("#artist-info").each(function () {
   var artistWiki = $("#artist-info").val()
   // this pulls the value entered into the input field 
@@ -143,4 +164,5 @@ $("#artist-info").each(function () {
   }
 
 
+})
 })
