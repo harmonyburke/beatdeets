@@ -48,7 +48,7 @@ $(document).ready(function () {
 
           saveAlbum(randomAlbum, artistName)
   
-=======
+
 
         } else {
 
@@ -147,15 +147,15 @@ $("#saved-albums").each(function () {
 
 }
 })
-$("#artist-info").each(function () {
-  var artistWiki = $("#artist-info").val()
-  // this pulls the value entered into the input field 
-  var saveWiki = localStorage.getItem(artistWiki)
-  // this gets the information from the wiki that has been set to local storage
-  if (saveWiki) {
-    $(this).find(saveWiki).val(artistWiki)
-    // find the info and sets it
-=======
+// $("#artist-info").each(function () {
+//   var artistWiki = $("#artist-info").val()
+//   // this pulls the value entered into the input field 
+//   var saveWiki = localStorage.getItem(artistWiki)
+//   // this gets the information from the wiki that has been set to local storage
+//   if (saveWiki) {
+//     $(this).find(saveWiki).val(artistWiki)
+//     // find the info and sets it
+
   function capitalizeFirstLetter(artistInput) {
     return artistInput.toLowerCase().replace(/^(.)|\s+(.)/g, function ($1) {
       return $1.toUpperCase();
@@ -288,4 +288,4 @@ $("#artist-info").each(function () {
   init();
 
 })
-})
+}
