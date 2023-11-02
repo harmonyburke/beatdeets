@@ -142,7 +142,9 @@ function saveAlbum(randomAlbum, artistName) {
 
       prevAlbum.addEventListener("click", function(event) {
         var albumClick = event.target.textContent; // Get the text content of the button
-        getAlbum(albumClick);
+        var [clickedArtist, clickedAlbum] = albumClick.split(" - ");
+        displaySearchResults(clickedArtist, clickedAlbum);
+
       });
     }
   }
