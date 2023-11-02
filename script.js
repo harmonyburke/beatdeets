@@ -80,11 +80,6 @@ $(document).ready(function () {
 
 
 
-
-
-
-
-
   var wikiLinkListEl = document.querySelector('.previous');
 
   // Create array of wikiLinks.
@@ -94,9 +89,6 @@ $(document).ready(function () {
   function capitalizeFirstLetter(artistInput) {
     return artistInput.toLowerCase().replace(/^(.)|\s+(.)/g, function ($1) {
       return $1.toUpperCase();
-    });
-
-  }
 
 
   function performSearch(artistInput) {
