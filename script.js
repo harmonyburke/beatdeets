@@ -5,7 +5,7 @@ $(document).ready(function () {
   var artistSearch = $("#artists-input")
   var searchBtn = $("#search-button")
   var randomDiv = $("#random-album")
-  
+
 
   searchBtn.on("click", function () {
     // event.preventDefault()
@@ -21,7 +21,7 @@ $(document).ready(function () {
 
     console.log(artistName)
 
-    var artistIdApi = `http://theaudiodb.com/api/v1/json/2/discography.php?s=` + artistName.toLowerCase()
+    var artistIdApi = `https://theaudiodb.com/api/v1/json/2/discography.php?s=` + artistName.toLowerCase()
 
     fetch(artistIdApi)
       .then(function (response) {
@@ -40,14 +40,14 @@ $(document).ready(function () {
 
           // Get the random album
           var randomAlbum = albums[randomIndex].strAlbum;
-  
+
           console.log('Random Album:', randomAlbum);
           // randomDiv.textContent=randomAlbum
           randomDiv.empty().append(randomAlbum);
 
 
           saveAlbum(randomAlbum, artistName)
-  
+
 
 
         } else {
@@ -60,11 +60,11 @@ $(document).ready(function () {
       .catch(function (error) {
         console.error('Error fetching data:', error);
       });
-  
-  
-  
-  
-  
+
+
+
+
+
   }
 
 
@@ -73,17 +73,17 @@ $(document).ready(function () {
 
 
 
-const urlParams = new URLSearchParams(window.location.search);
-const artistInput = urlParams.get("artist");
-if (artistInput) {
-  // document.getElementById("artists-input").value = artistInput;
-  console.log(artistInput)
-  getAlbum(artistInput)
-  
-  performSearch(artistInput);
-}
-document
-  .getElementById("search-button")
+  const urlParams = new URLSearchParams(window.location.search);
+  const artistInput = urlParams.get("artist");
+  if (artistInput) {
+    // document.getElementById("artists-input").value = artistInput;
+    console.log(artistInput)
+    getAlbum(artistInput)
+
+    performSearch(artistInput);
+  }
+  document
+    .getElementById("search-button")
 
 
 
@@ -97,37 +97,37 @@ document
 
 
 
-function saveAlbum(randomAlbum, artistName) {
-  var albumHistory = JSON.parse(localStorage.getItem("savedAlbum")) || [];
+  function saveAlbum(randomAlbum, artistName) {
+    var albumHistory = JSON.parse(localStorage.getItem("savedAlbum")) || [];
 
-  var combinedName = artistName + " - " + randomAlbum;
-  console.log(combinedName)
+    var combinedName = artistName + " - " + randomAlbum;
+    console.log(combinedName)
 
-  if (albumHistory.indexOf(combinedName) === -1) {
-    albumHistory.push(combinedName);
-    localStorage.setItem("savedAlbum", JSON.stringify(albumHistory));
+    if (albumHistory.indexOf(combinedName) === -1) {
+      albumHistory.push(combinedName);
+      localStorage.setItem("savedAlbum", JSON.stringify(albumHistory));
 
-    var lastAlbumDiv = document.getElementById("previous-button");
-    lastAlbumDiv.innerHTML = "";
+      var lastAlbumDiv = document.getElementById("previous-button");
+      lastAlbumDiv.innerHTML = "";
 
-    for (var i = 0; i < albumHistory.length; i++) {
-      var artistAlbum = albumHistory[i];
-      console.log(artistAlbum);
+      for (var i = 0; i < albumHistory.length; i++) {
+        var artistAlbum = albumHistory[i];
+        console.log(artistAlbum);
 
-      var prevAlbum = document.createElement("button");
-      prevAlbum.textContent = artistAlbum;
-      prevAlbum.setAttribute("id", "albumBtn" + i); // Unique IDs for each button
-      lastAlbumDiv.appendChild(prevAlbum);
+        var prevAlbum = document.createElement("button");
+        prevAlbum.textContent = artistAlbum;
+        prevAlbum.setAttribute("id", "albumBtn" + i); // Unique IDs for each button
+        lastAlbumDiv.appendChild(prevAlbum);
 
-      prevAlbum.addEventListener("click", function(event) {
-        var albumClick = event.target.textContent; // Get the text content of the button
-        var [clickedArtist, clickedAlbum] = albumClick.split(" - ");
-        displaySearchResults(clickedArtist, clickedAlbum);
+        prevAlbum.addEventListener("click", function (event) {
+          var albumClick = event.target.textContent; // Get the text content of the button
+          var [clickedArtist, clickedAlbum] = albumClick.split(" - ");
+          displaySearchResults(clickedArtist, clickedAlbum);
 
-      });
+        });
+      }
     }
   }
-}
 
 
 
@@ -227,19 +227,19 @@ function saveAlbum(randomAlbum, artistName) {
 
     wikiLinkListEl.addEventListener('click', function (event) {
       var element = event.target;
-  
+
       // Checks if element is a button
       if (element.matches("button") === true) {
-  
+
         // Get its data-index value.
         var index = element.parentElement.getAttribute("data-index");
         wikiLinks.splice(index, 1);
-  
+
         // Store updated todos in localStorage, re-render the list
         storeWikiLink();
         renderWikiLinkHistory();
       }
-  
+
     });
   }
 
@@ -261,8 +261,8 @@ function saveAlbum(randomAlbum, artistName) {
     }
 
   }
-  
-      init();
+
+  init();
 
 
 })
