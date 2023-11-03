@@ -1,51 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./assets/page2.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="crossorigin="anonymous"></script>
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@1,300&family=Oswald:wght@300&family=Pixelify+Sans&display=swap" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./assets/page2.css" rel="stylesheet" />
+    <script
+      src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@1,300&family=Oswald:wght@300&family=Pixelify+Sans&display=swap"
+      rel="stylesheet"
+    />
     <title>The Deetz</title>
-</head>
+  </head>
 
-<body>
+  <body>
+    <section>
+      <div
+        id="previous-button"
+        class="previous flex flex-col items-center text-black"
+      ></div>
+    </section>
 
-<section>
-    <div class="flex justify-center items-center topnav">
-        <input type="text" id="artists-input" placeholder="Enter your favorite  Artist!">
-        <button id="search-button" type="button">Give me a beat!</button>
-    </div>
-    <div id="prev-album" class="previous flex flex-col items-center"></div>
-    <div id="previous-button" class="previous flex flex-col items-center text-black"></div>
-</section>
-=======
+    <section>
+      <div class="flex justify-center items-center topnav mt-3">
+        <input
+          type="text"
+          id="artists-input"
+          class="border text-xs rounded-md p-1 mr-2"
+          placeholder="Enter your favorite Artist!"
+        />
+        <button
+          id="search-button"
+          class="text-white border border-black rounded-md p-1"
+          type="button"
+        >
+          Give me a beat!
+        </button>
+      </div>
+      <div
+        id="previous-button"
+        class="previous flex flex-col items-center text-xs text-white"
+      ></div>
+    </section>
 
-
-<section>
-    <div class="flex justify-center items-center topnav mt-3">
-        <input type="text" id="artists-input" class="border text-xs rounded-md p-1 mr-2"placeholder="Enter your favorite Artist!">
-        <button id="search-button" class="text-white border border-black rounded-md p-1" type="button">Give me a beat!</button>
-    </div>
-    <div id="previous-button" class="previous flex flex-col items-center text-xs text-white"></div>
-</section>
-
-
-<div class="flex justify-center items-center mt-6">
-    <section class="border border-black rounded w-3/4">
+    <div class="flex justify-center items-center mt-6">
+      <section class="border border-black rounded w-3/4">
         <div class="flex justify-center items-center albums">
-            <h1 class="block mb-2 text-white text-xl">Check out this album! </h1>
-            <div id="random-album" class="block text-white text-xl"></div>    
+          <h1 class="block mb-2 text-white text-xl">Check out this album!</h1>
+          <div id="random-album" class="block text-white text-xl"></div>
         </div>
         <div class="wikiresults flex flex-col items-center">
-            <h1 class="decoration-solid text-white" id="wikibio"></h1>
-        </div> 
-    </section>
-</div>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="script.js"></script>
-</body>
+          <h1 class="decoration-solid text-white" id="wikibio"></h1>
+        </div>
+      </section>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="script.js"></script>
+  </body>
 </html>
