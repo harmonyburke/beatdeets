@@ -89,7 +89,7 @@ $(document).ready(function () {
 
 
 
-  var wikiLinkListEl = document.querySelector('.previous');
+  var wikiLinkListEl = document.querySelector('.wikiresults');
 
   // Create array of wikiLinks.
   var wikiLinks = [];
@@ -97,37 +97,6 @@ $(document).ready(function () {
 
 
 
-  function saveAlbum(randomAlbum, artistName) {
-    var albumHistory = JSON.parse(localStorage.getItem("savedAlbum")) || [];
-
-    var combinedName = artistName + " - " + randomAlbum;
-    console.log(combinedName)
-
-    if (albumHistory.indexOf(combinedName) === -1) {
-      albumHistory.push(combinedName);
-      localStorage.setItem("savedAlbum", JSON.stringify(albumHistory));
-
-      var lastAlbumDiv = document.getElementById("previous-button");
-      lastAlbumDiv.innerHTML = "";
-
-      for (var i = 0; i < albumHistory.length; i++) {
-        var artistAlbum = albumHistory[i];
-        console.log(artistAlbum);
-
-        var prevAlbum = document.createElement("button");
-        prevAlbum.textContent = artistAlbum;
-        prevAlbum.setAttribute("id", "albumBtn" + i); // Unique IDs for each button
-        lastAlbumDiv.appendChild(prevAlbum);
-
-        prevAlbum.addEventListener("click", function (event) {
-          var albumClick = event.target.textContent; // Get the text content of the button
-          var [clickedArtist, clickedAlbum] = albumClick.split(" - ");
-          displaySearchResults(clickedArtist, clickedAlbum);
-
-        });
-      }
-    }
-  }
 
 
 
@@ -167,8 +136,6 @@ $(document).ready(function () {
         // Set the wikiLink to local storage.
         storeWikiLink(wikiLink);
 
-        // Display wikiLink history.
-        renderWikiLinkHistory(formattedArtistInput, wikiLink);
 
       })
       .catch((error) => {
@@ -187,7 +154,7 @@ $(document).ready(function () {
     wikiBioElement.innerHTML = `<strong>${formattedArtistInput}</strong>: <a href='${wikiLink}' target='_blank'>About the Artist</a>`;
   }
 
-
+  
   // Stringify and set key in localStorage to wikiLinks array.
   function storeWikiLink(wikiLink) {
 
@@ -202,6 +169,38 @@ $(document).ready(function () {
 
   }
 
+  function saveAlbum(randomAlbum, artistName) {
+    var albumHistory = JSON.parse(localStorage.getItem("savedAlbum")) || [];
+
+    var combinedName = artistName + " - " + randomAlbum;
+    console.log(combinedName)
+
+    if (albumHistory.indexOf(combinedName) === -1) {
+      albumHistory.push(combinedName);
+      localStorage.setItem("savedAlbum", JSON.stringify(albumHistory));
+      
+
+      var lastAlbumDiv = document.getElementById("previous-button");
+      lastAlbumDiv.innerHTML = "";
+
+      for (var i = 0; i < albumHistory.length; i++) {
+        var artistAlbum = albumHistory[i];
+        console.log(artistAlbum);
+
+        var prevAlbum = document.createElement("button");
+        prevAlbum.textContent = artistAlbum;
+        prevAlbum.setAttribute("id", "albumBtn" + i); // Unique IDs for each button
+        lastAlbumDiv.appendChild(prevAlbum);
+
+        prevAlbum.addEventListener("click", function (event) {
+          var albumClick = event.target.textContent; // Get the text content of the button
+          var [clickedArtist, clickedAlbum] = albumClick.split(" - ");
+          displaySearchResults(clickedArtist, clickedAlbum);
+
+        });
+      }
+    }
+  }
 
   // Renders links in a history list as buttons.
   function renderWikiLinkHistory(formattedArtistInput) {
@@ -263,6 +262,7 @@ $(document).ready(function () {
   }
 
   init();
+
 
 
 })
