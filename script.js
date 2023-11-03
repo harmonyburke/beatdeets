@@ -5,7 +5,7 @@ $(document).ready(function () {
   var artistSearch = $("#artists-input")
   var searchBtn = $("#search-button")
   var randomDiv = $("#random-album")
-  var lastAlbumDiv=$("#prev-album")
+  
 
   searchBtn.on("click", function () {
     // event.preventDefault()
@@ -107,7 +107,7 @@ function saveAlbum(randomAlbum, artistName) {
     albumHistory.push(combinedName);
     localStorage.setItem("savedAlbum", JSON.stringify(albumHistory));
 
-    var lastAlbumDiv = document.getElementById("prev-album");
+    var lastAlbumDiv = document.getElementById("previous-button");
     lastAlbumDiv.innerHTML = "";
 
     for (var i = 0; i < albumHistory.length; i++) {
@@ -129,38 +129,16 @@ function saveAlbum(randomAlbum, artistName) {
   }
 }
 
-})
-$("#saved-albums").each(function () {
-  // looks for current album and saves it 
-  var albumName = localStorage.getItem(saveAlbum);
-  // gets the album saved to local storage
-  var saveAlbum = albumName.val()
-  // this pulls the value from the entered information
 
-  if (albumName) {
-    $(this).find(saveAlbum).val(albumName)
-    // finds the album name and saves it to the html class/id
-  if (albumName) {
-    $(this).find(saveAlbum).val(albumName);
-    // finds the album name and saves it to the html class/id
-  }
 
-}
-})
-// $("#artist-info").each(function () {
-//   var artistWiki = $("#artist-info").val()
-//   // this pulls the value entered into the input field 
-//   var saveWiki = localStorage.getItem(artistWiki)
-//   // this gets the information from the wiki that has been set to local storage
-//   if (saveWiki) {
-//     $(this).find(saveWiki).val(artistWiki)
-//     // find the info and sets it
+
 
   function capitalizeFirstLetter(artistInput) {
     return artistInput.toLowerCase().replace(/^(.)|\s+(.)/g, function ($1) {
       return $1.toUpperCase();
 
-
+    })
+  }
   function performSearch(artistInput) {
 
     var searchQuery = artistInput + ' musician';
@@ -247,26 +225,26 @@ $("#saved-albums").each(function () {
       wikiLinkListEl.appendChild(prevWikiLinkBtn);
     }
 
+    wikiLinkListEl.addEventListener('click', function (event) {
+      var element = event.target;
+  
+      // Checks if element is a button
+      if (element.matches("button") === true) {
+  
+        // Get its data-index value.
+        var index = element.parentElement.getAttribute("data-index");
+        wikiLinks.splice(index, 1);
+  
+        // Store updated todos in localStorage, re-render the list
+        storeWikiLink();
+        renderWikiLinkHistory();
+      }
+  
+    });
   }
 
 
   // Add click event to todoList element
-  wikiLinkListEl.addEventListener('click', function (event) {
-    var element = event.target;
-
-    // Checks if element is a button
-    if (element.matches("button") === true) {
-
-      // Get its data-index value.
-      var index = element.parentElement.getAttribute("data-index");
-      wikiLinks.splice(index, 1);
-
-      // Store updated todos in localStorage, re-render the list
-      storeWikiLink();
-      renderWikiLinkHistory();
-    }
-
-  });
 
 
   // This function is being called below and will run when the page loads.
@@ -282,10 +260,9 @@ $("#saved-albums").each(function () {
       renderWikiLinkHistory();
     }
 
-
   }
+  
+      init();
 
-  init();
 
 })
-}
