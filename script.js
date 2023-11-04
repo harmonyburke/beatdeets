@@ -5,6 +5,8 @@ $(document).ready(function () {
   var artistSearch = $("#artists-input")
   var searchBtn = $("#search-button")
   var randomDiv = $("#random-album")
+  
+  var wikiLinkListEl = $(".wikiresults");
 
 
   searchBtn.on("click", function () {
@@ -89,7 +91,6 @@ $(document).ready(function () {
 
 
 
-  var wikiLinkListEl = document.querySelector('.wikiresults');
 
   // Create array of wikiLinks.
   var wikiLinks = [];
@@ -157,15 +158,19 @@ $(document).ready(function () {
   
   // Stringify and set key in localStorage to wikiLinks array.
   function storeWikiLink(wikiLink) {
+    localStorage.setItem("wikiLinks", JSON.stringify(wikiLink))
 
-    if (!wikiLinks.includes(wikiLink)) {
 
-      // Push the wikiLink to the array only if it's not already in the array.
-      wikiLinks.push(wikiLink);
 
-      // Stringify and set key in localStorage to wikiLinks array.
-      localStorage.setItem('wikiLinks', JSON.stringify(wikiLinks));
-    }
+
+    // if (!wikiLinks.includes(wikiLink)) {
+
+    //   // Push the wikiLink to the array only if it's not already in the array.
+    //   wikiLinks.push(wikiLink);
+
+    //   // Stringify and set key in localStorage to wikiLinks array.
+    //   localStorage.setItem('wikiLinks', JSON.stringify(wikiLinks));
+    // }
 
   }
 
@@ -195,13 +200,29 @@ $(document).ready(function () {
         prevAlbum.addEventListener("click", function (event) {
           var albumClick = event.target.textContent; // Get the text content of the button
           var [clickedArtist, clickedAlbum] = albumClick.split(" - ");
-          displaySearchResults(clickedArtist, clickedAlbum);
+          var getUrl=JSON.parse(localStorage.getItem(wikiLinks))
+          displaySearchResults(clickedArtist, clickedAlbum, getUrl );
 
         });
       }
     }
-  }
+    
+      // Stringify and set key in localStorage to wikiLinks array.
+  
 
+    // saveAllInfo()
+  
+  }
+// function saveAllInfo(){
+//   var storedInfo=JSON.parse(localStorage.getItem("savedAlbum"))
+//   var urlInfo=JSON.parse(localStorage.getItem("wikiLinks"))
+//   console.log('all my stored info',storedInfo + " :" + urlInfo)
+//   var combinedData=storedInfo+urlInfo
+//   localStorage.setItem("artistData", JSON.stringify(combinedData))
+//   var lastAlbumDiv = document.getElementById("previous-button");
+
+//   lastAlbumDiv.append(combinedData)
+// }
   // Renders links in a history list as buttons.
   function renderWikiLinkHistory(formattedArtistInput) {
     wikiLinkListEl.innerHTML = '';
@@ -219,27 +240,27 @@ $(document).ready(function () {
       link.target = "_blank";
       link.textContent = 'About the Artist';
 
-      prevWikiLinkBtn.appendChild(link);
+      prevWikiLinkBtn.append(link);
       prevWikiLinkBtn.setAttribute('data-index', i);
-      wikiLinkListEl.appendChild(prevWikiLinkBtn);
+      wikiLinkListEl.append(prevWikiLinkBtn);
     }
 
-    wikiLinkListEl.addEventListener('click', function (event) {
-      var element = event.target;
+    // wikiLinkListEl.addEventListener('click', function (event) {
+    //   var element = event.target;
 
-      // Checks if element is a button
-      if (element.matches("button") === true) {
+    //   // Checks if element is a button
+    //   if (element.matches("button") === true) {
 
-        // Get its data-index value.
-        var index = element.parentElement.getAttribute("data-index");
-        wikiLinks.splice(index, 1);
+    //     // Get its data-index value.
+    //     var index = element.parentElement.getAttribute("data-index");
+    //     wikiLinks.splice(index, 1);
 
-        // Store updated todos in localStorage, re-render the list
-        storeWikiLink();
-        renderWikiLinkHistory();
-      }
+    //     // Store updated todos in localStorage, re-render the list
+    //     storeWikiLink();
+    //     renderWikiLinkHistory();
+    //   }
 
-    });
+    // });
   }
 
 
