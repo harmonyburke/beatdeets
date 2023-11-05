@@ -17,6 +17,7 @@ $(document).ready(function () {
     if (randomAlbum) {
       // Get random album first and then call performSearch
       performSearch(artistName, randomAlbum);
+      
     }
 
     window.location.href = `page2.html?artist=${encodeURIComponent(artistName)}`;
@@ -156,6 +157,7 @@ $(document).ready(function () {
     album: randomAlbum,
     wikiLink: wikiLink,
   };
+  console.log(randomAlbum)
   console.log("Entry",entry)
 
   if (!albumHistory.some((entryItem) => entryItem.artist === artistName && entryItem.album === randomAlbum)) {
@@ -173,6 +175,7 @@ $(document).ready(function () {
       lastAlbumDiv.appendChild(prevAlbum);
 
       prevAlbum.addEventListener("click", function (event) {
+        
         var albumClick = event.target.textContent;
         var clickedEntry = albumHistory.find((entryItem) => artistAlbumEntry.artist + " - " + artistAlbumEntry.album === albumClick);
         displaySearchResults(clickedEntry.artist, clickedEntry.album, clickedEntry.wikiLink);
