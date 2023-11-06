@@ -41,9 +41,9 @@ To navigate between pages:
 
 The following images demonstrate the web application's appearance and functionality:
 
-![Alt text](./assets/images/mockup-1.png)
-![Alt text](./assets/images/mockup-2.png)
-![Alt text](./assets/images/mockup-3.png)
+![Alt text](assets\images\project1.png)
+![Alt text](assets\images\project1-2.png)
+
 
 ## Deployment Link
 
