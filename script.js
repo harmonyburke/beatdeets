@@ -12,6 +12,7 @@ $(document).ready(function () {
   function getAlbum(artistName) {
     console.log(artistName);
     var artistIdApi = `https://theaudiodb.com/api/v1/json/2/discography.php?s=` + artistName.toLowerCase();
+    // the API to find an album by the artist name, toLowerCase changes any capitalization to lowercase letters
 
     fetch(artistIdApi)
       .then(function (response) {
@@ -22,15 +23,20 @@ $(document).ready(function () {
 
         var albums = data.album;
         console.log(albums);
+        // data.album is the array with the albums by the artist that is searched
 
         if (albums && albums.length > 0) {
+          // if the albums.length index is greater than 0
           var randomIndex = Math.floor(Math.random() * albums.length);
           var randomAlbum = albums[randomIndex].strAlbum;
           console.log('Random Album:', randomAlbum);
           randomDiv.empty().append(randomAlbum);
+          // this randomized the album chosen from the albums array
           saveAlbum(randomAlbum, artistName);
+          // this saves the randomly chosen album and artist name to local storage
         } else {
           console.log('No albums found for the artist');
+          // this would run if the search doesn't return anything
         }
       })
       .catch(function (error) {
@@ -40,7 +46,9 @@ $(document).ready(function () {
 
   function saveAlbum(randomAlbum, artistName) {
     var albumHistory = JSON.parse(localStorage.getItem("savedAlbum")) || [];
+    // saves the album to local storage as an array
     var combinedName = artistName + " - " + randomAlbum;
+    // combined the artist name and random album as a single string
     console.log(combinedName);
 
     albumHistory.unshift(combinedName);
